@@ -1,11 +1,11 @@
 export class Star{
 
-    constructor(id, x, y){
+    constructor(id, x, y, speed){
 
         this.id = id
         this.x = x
         this.y = y
-        this.speed = 10;
+        this.speed = speed;
         this.element = null
     }
 
@@ -14,8 +14,8 @@ export class Star{
         if(this.element != null){
 
             this.setDirection(side)
-            if(side === 'top' || side === 'bottom')this.element.style.top = this.x + "px"
-            if(side === 'left' || side === 'right')this.element.style.left = this.y + "px"
+            if(side === 'top' || side === 'bottom')this.element.style.top = this.y + "px"
+            if(side === 'left' || side === 'right')this.element.style.left = this.x + "px"
         
         }
 
@@ -32,18 +32,18 @@ export class Star{
         }
         
 
-        if(side === 'bottom') this.x += this.speed
-        if(side === 'top') this.x -= this.speed
-        if(side === 'left') this.y -= this.speed
-        if(side === 'right') this.y += this.speed
+        if(side === 'bottom') this.y += this.speed
+        if(side === 'top') this.y -= this.speed
+        if(side === 'left') this.x -= this.speed
+        if(side === 'right') this.x += this.speed
 
     }
 
     getPosition(){
 
         var style = window.getComputedStyle(this.element)
-        this.x = style.getPropertyValue('top')
-        this.y = style.getPropertyValue('left')
+        this.x = style.getPropertyValue('left')
+        this.y = style.getPropertyValue('top')
         
         return [parseInt(this.x), parseInt(this.y)]
 

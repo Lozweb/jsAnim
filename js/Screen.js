@@ -2,17 +2,16 @@ export class Screen{
 
     constructor(id){
         this.screen = document.getElementById(id)
-        this.screenWidth = this.screen.offsetWidth
-        this.screenHeigth = this.screen.offsetHeight
+        this.width = this.screen.offsetWidth
+        this.heigth = this.screen.offsetHeight
         this.entities = []
     }
 
     add(entity){
         
-
         var htlm = '<figure id="' + entity.id + '" '
-        htlm += 'class="star" style=" top:' + entity.x + 'px;'
-        htlm += 'left: ' + entity.y + 'px"></figure>'
+        htlm += 'class="star" style=" top:' + entity.y + 'px;'
+        htlm += 'left: ' + entity.x + 'px"></figure>'
 
         this.screen.innerHTML += htlm
         
@@ -22,13 +21,10 @@ export class Screen{
 
     isOut(entity){
 
-        if(entity.y > this.screenWidth || entity.y < 0 || entity.x > this.screenHeigth || entity.x < 0){
-            return true
-        }
-        else{
-            return false
-        } 
-
+        if(entity.x > this.width || entity.x < -100 || entity.y > this.heigth || entity.y < 0) return true
+        
+        else return false
+    
     }
 
     remove(entity){
