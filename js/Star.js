@@ -9,18 +9,28 @@ export class Star{
         this.element = null
     }
 
-    move(side){
+    moveTo(side){
         
-        this.direction(side)
-        if(side === 'top' || side === 'bottom')this.element.style.top = this.x + "px"
-        if(side === 'left' || side === 'right')this.element.style.left = this.y + "px"
+        if(this.element != null){
+
+            this.setDirection(side)
+            if(side === 'top' || side === 'bottom')this.element.style.top = this.x + "px"
+            if(side === 'left' || side === 'right')this.element.style.left = this.y + "px"
+        
+        }
+
     }
 
-    direction(side){
+    setDirection(side){
 
-        var position = this.getPosbyId(this.id)
-        this.x = position[0]
-        this.y = position[1]
+        if(this.element != null){
+
+            var position = this.getPosition()
+            this.x = position[0]
+            this.y = position[1]
+
+        }
+        
 
         if(side === 'bottom') this.x += this.speed
         if(side === 'top') this.x -= this.speed
@@ -29,7 +39,7 @@ export class Star{
 
     }
 
-    getPosbyId(id){
+    getPosition(){
 
         var style = window.getComputedStyle(this.element)
         this.x = style.getPropertyValue('top')

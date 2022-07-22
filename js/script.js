@@ -4,37 +4,40 @@ import {Screen} from "./Screen.js"
 var screen = new Screen('bgAnim')
 
 var stars = [
+
     new Star(0,10,10), 
     new Star(1, 50, 100), 
     new Star(2, 50, 30)
+
 ]
 
+for(var i=0; i < stars.length; i++){
 
-screen.add(stars[0])
-screen.add(stars[1])
+    screen.add(stars[i])
 
-engine()
+}
+
+var start = setInterval(engine, 1)
+screen.updateArray()
 
 function engine(){
 
     for(var i=0; i < screen.entities.length; i++){
 
-        screen.entities[i].move('bottom')
+        screen.entities[i].moveTo('bottom')
 
-        console.log(screen.entities[i])
-
-        if(screen.isOut(screen.entities[i])){
-
-            screen.remove(screen.entities[i])
-
-        }
+        cleanScreen(screen.entities[i])   
 
     }
 
 }
 
+function cleanScreen(entity){
 
+    if(screen.isOut(entity)){
 
-//var start = setInterval(engine, 1)
+        screen.remove(entity)
 
+    }
 
+}

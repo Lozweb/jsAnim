@@ -1,5 +1,3 @@
-import { Star } from "./Star.js"
-
 export class Screen{
 
     constructor(id){
@@ -17,28 +15,41 @@ export class Screen{
         htlm += 'left: ' + entity.y + 'px"></figure>'
 
         this.screen.innerHTML += htlm
-
-        entity.element = document.getElementById(entity.id)
-
+        
         this.entities.push(entity)
 
     }
 
     isOut(entity){
 
-        if(entity.y > this.screenWidth || entity.y < 0 || entity.x > this.screenHeigth || entity.x < 0)return true
-        else return false
+        if(entity.y > this.screenWidth || entity.y < 0 || entity.x > this.screenHeigth || entity.x < 0){
+            return true
+        }
+        else{
+            return false
+        } 
 
     }
 
     remove(entity){
 
-        this.entities = this.entities.filter(data => data.id == entity.id)
-        document.getElementById(entity.id).remove()
-        console.log('remove star ' + entity.id)
+        if(entity != null){
+
+            this.entities = this.entities.filter(data => data.id != entity.id)
+            
+            document.getElementById(entity.id).remove()
+            
+        }
+
     }
 
     updateArray(){
+
+        for(var i = 0; i < this.entities.length; i++){
+
+            this.entities[i].element = document.getElementById(this.entities[i].id)
+
+        }
 
     }
 
