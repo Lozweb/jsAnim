@@ -1,3 +1,5 @@
+import { Star } from "./Star.js"
+
 export class Screen{
 
     constructor(id){
@@ -9,21 +11,34 @@ export class Screen{
 
     add(entity){
         
-        this.screen.innerHTML += '<figure id="' + entity.id + '" class="star style=" top:' + entity.x + 'px; left: ' + this.entity.y + '"></figure>'
+
+        var htlm = '<figure id="' + entity.id + '" '
+        htlm += 'class="star" style=" top:' + entity.x + 'px;'
+        htlm += 'left: ' + entity.y + 'px"></figure>'
+
+        this.screen.innerHTML += htlm
+
+        entity.element = document.getElementById(entity.id)
+
         this.entities.push(entity)
 
     }
 
     isOut(entity){
 
-        if(entity.x > this.screenWidth || entity.x < 0 || entity.y > this.screenHeigth || entity.y < 0)return true
+        if(entity.y > this.screenWidth || entity.y < 0 || entity.x > this.screenHeigth || entity.x < 0)return true
         else return false
 
     }
 
     remove(entity){
 
-        this.entities = this.entities.filter(entity.id)
+        this.entities = this.entities.filter(data => data.id == entity.id)
+        document.getElementById(entity.id).remove()
+        console.log('remove star ' + entity.id)
+    }
+
+    updateArray(){
 
     }
 

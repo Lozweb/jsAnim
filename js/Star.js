@@ -2,43 +2,40 @@ export class Star{
 
     constructor(id, x, y){
 
-        this.id = id;
+        this.id = id
         this.x = x
         this.y = y
-
-        this.interval = null
+        this.speed = 10;
+        this.element = null
     }
 
-    start(){
-
-        this.element = document.getElementById(this.id);
-        this.interval = setInterval(this.changePosByElement.bind(this), 250, this.element)
-
+    move(side){
+        
+        this.direction(side)
+        if(side === 'top' || side === 'bottom')this.element.style.top = this.x + "px"
+        if(side === 'left' || side === 'right')this.element.style.left = this.y + "px"
     }
 
-    changePosById(id){
+    direction(side){
 
-        var pos = this.getPosbyId(id);
-        var element = document.getElementById(id)
-        element.style.top = pos[0] + 120 + 'px';
+        var position = this.getPosbyId(this.id)
+        this.x = position[0]
+        this.y = position[1]
+
+        if(side === 'bottom') this.x += this.speed
+        if(side === 'top') this.x -= this.speed
+        if(side === 'left') this.y -= this.speed
+        if(side === 'right') this.y += this.speed
 
     }
-
-    changePosByElement(element){
-
-        var pos = this.getPosbyId(element.id)
-        element.style.top = pos[0] + 120 + 'px';
-
-    }    
 
     getPosbyId(id){
 
-        var element = document.getElementById(id),
-        style = window.getComputedStyle(element),
-        x = style.getPropertyValue('top'),
-        y = style.getPropertyValue('left')
+        var style = window.getComputedStyle(this.element)
+        this.x = style.getPropertyValue('top')
+        this.y = style.getPropertyValue('left')
         
-        return [parseInt(x), parseInt(y)]
+        return [parseInt(this.x), parseInt(this.y)]
 
     }
 
