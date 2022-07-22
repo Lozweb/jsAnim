@@ -3,11 +3,10 @@ import {StarsGenerator} from "./StarsGenerator.js"
 
 
 var screen = new Screen('bgAnim')
+const DIRECTION = 'bottom'
 
-var stars = new StarsGenerator(screen.width, screen.heigth)
-console.log(screen.width)
-var nb = 100, count = 0
-console.log(stars)
+var stars = new StarsGenerator(screen.width, screen.heigth, DIRECTION)
+var nb = 10, count = 0
 
 while(count < nb){
 
@@ -15,6 +14,8 @@ while(count < nb){
     count++
     
 }
+
+console.log(stars)
 
 stars.init = false;
 
@@ -26,7 +27,7 @@ function engine(){
 
     for(var i=0; i < screen.entities.length; i++){
 
-        screen.entities[i].moveTo('left')
+        screen.entities[i].moveTo(DIRECTION)
 
         cleanScreen(screen.entities[i])   
 

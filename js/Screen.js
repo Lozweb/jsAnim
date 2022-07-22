@@ -21,7 +21,13 @@ export class Screen{
 
     isOut(entity){
 
-        if(entity.x > this.width || entity.x < -100 || entity.y > this.heigth || entity.y < 0) return true
+        if(entity.x > this.width || entity.x < -100){
+            return true;
+        } 
+
+        if(entity.y > this.heigth || entity.y < 0) {
+            return true
+        }
         
         else return false
     
@@ -35,6 +41,7 @@ export class Screen{
             
             document.getElementById(entity.id).remove()
             
+            console.log(this.entities)
         }
 
     }
