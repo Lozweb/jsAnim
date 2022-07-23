@@ -5,8 +5,10 @@ export class Star{
         this.id = id
         this.x = x
         this.y = y
-        this.speed = speed;
+        this.speed = speed
         this.element = null
+        this.size = speed
+        this.color = '#85df4e'
     }
 
     moveTo(side){

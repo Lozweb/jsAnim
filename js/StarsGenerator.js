@@ -8,6 +8,15 @@ export class StarsGenerator{
         this.maxHeigth = h
         this.init = true;
         this.direction = direction
+        this.colors = [
+            '#afc9ff',
+            '#c7d8ff',
+            '#fff4f3',
+            '#ffe5cf',
+            '#ffd9b2',
+            '#ffc78e',
+            '#ffa651'
+        ]
     }
 
     createRandomStar(){
@@ -32,10 +41,16 @@ export class StarsGenerator{
         var speed = this.getRandom(1, 6)
 
         var star = new Star(this.countId, x, y, speed)
+        star.color = this.getRandomColor()
+        
         this.countId++
 
         return star
 
+    }
+
+    getRandomColor(){
+        return this.colors[this.getRandom(0,6)]
     }
 
     getRandom(min, max){

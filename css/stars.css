@@ -13,10 +13,7 @@ body{
 
 .star{
     position: absolute;
-    width: 5px;
-    height: 5px;
     border-radius: 50%;
-    background-color: white;
 }
 main{
     z-index: 1;

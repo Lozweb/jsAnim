@@ -9,11 +9,14 @@ export class Screen{
 
     add(entity){
         
-        var htlm = '<figure id="' + entity.id + '" '
-        htlm += 'class="star" style=" top:' + entity.y + 'px;'
-        htlm += 'left: ' + entity.x + 'px"></figure>'
+        var html = '<figure id="' + entity.id + '" '
+        html += 'class="star" style=" top:' + entity.y + 'px;'
+        html += 'left: ' + entity.x + 'px;'
+        html += 'width:' + entity.size + 'px;'
+        html += 'height:'+ entity.size + 'px;'
+        html += 'background-color:' + entity.color + ';"></figure>'
 
-        this.screen.innerHTML += htlm
+        this.screen.innerHTML += html
         
         this.entities.push(entity)
 
@@ -41,7 +44,6 @@ export class Screen{
             
             document.getElementById(entity.id).remove()
             
-            console.log(this.entities)
         }
 
     }
